@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkPost", "SparkPost\SparkPost.csproj", "{A5DDA3E3-7B3D-46C3-B4BB-C627FBA37812}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkPost.Tests", "SparkPost.Tests\SparkPost.Tests.csproj", "{52F2F4F4-3DE2-49C6-87D8-BD6F825B9372}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkPost.Portable", "SparkPost.Portable\SparkPost.Portable.csproj", "{2F7E9E0B-27BB-42AC-AB4A-B8249B64C654}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AD14B45A-9CC6-41A7-B92C-462C9228CC61}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE285BA1-A3D8-4394-A2D6-3E000BF5808E}"
+	ProjectSection(SolutionItems) = preProject
+		Rebracer.xml = Rebracer.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +31,6 @@ Global
 		{52F2F4F4-3DE2-49C6-87D8-BD6F825B9372}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52F2F4F4-3DE2-49C6-87D8-BD6F825B9372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52F2F4F4-3DE2-49C6-87D8-BD6F825B9372}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F7E9E0B-27BB-42AC-AB4A-B8249B64C654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F7E9E0B-27BB-42AC-AB4A-B8249B64C654}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F7E9E0B-27BB-42AC-AB4A-B8249B64C654}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F7E9E0B-27BB-42AC-AB4A-B8249B64C654}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

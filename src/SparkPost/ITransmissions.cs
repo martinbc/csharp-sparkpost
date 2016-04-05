@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 
 namespace SparkPost
 {
@@ -12,6 +11,6 @@ namespace SparkPost
         /// </summary>
         /// <param name="transmission">The properties of the transmission to send.</param>
         /// <returns>The response from the API.</returns>
-        Task<SendTransmissionResponse> Send(Transmission transmission);
+        SendTransmissionResponse Send(Transmission transmission);
     }
 }

@@ -11,6 +11,9 @@ namespace SparkPost
             this.response = response;
         }
 
-        public override string Message => response.Content;
+        public override string Message
+        {
+            get { return response.Content; }
+        }
     }
 }

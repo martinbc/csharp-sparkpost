@@ -21,9 +21,10 @@ namespace SparkPost
         {
             var result = WithCommonConventions(transmission, new Dictionary<string, object>
             {
-                ["recipients"] = transmission.ListId != null
-                    ? (object) new Dictionary<string, object> {["list_id"] = transmission.ListId}
+                { "recipients",  transmission.ListId != null
+                    ? (object) new Dictionary<string, object>{ { "list_id", transmission.ListId } }
                     : transmission.Recipients.Select(ToDictionary)
+                }
             });
 
             CcHandling.SetAnyCCsInTheHeader(transmission, result);
@@ -35,7 +36,7 @@ namespace SparkPost
         {
             return WithCommonConventions(recipient, new Dictionary<string, object>()
             {
-                ["type"] = null,
+                { "type",  null },
             });
         }
 
@@ -102,7 +103,7 @@ namespace SparkPost
         {
             if (propertyType != typeof(int) && converters.ContainsKey(propertyType))
                 value = converters[propertyType].Invoke(this, BindingFlags.Default, null,
-                    new[] {value}, CultureInfo.CurrentCulture);
+                    new[] { value }, CultureInfo.CurrentCulture);
             else if (value != null && propertyType.Name.EndsWith("List`1") &&
                      propertyType.GetGenericArguments().Count() == 1 &&
                      converters.ContainsKey(propertyType.GetGenericArguments().First()))
@@ -113,7 +114,7 @@ namespace SparkPost
 
                 if (list.Any())
                     value = list.Select(x => converter.Invoke(this, BindingFlags.Default, null,
-                        new[] {x}, CultureInfo.CurrentCulture)).ToList();
+                        new[] { x }, CultureInfo.CurrentCulture)).ToList();
                 else
                     value = null;
             }
@@ -123,18 +124,18 @@ namespace SparkPost
                 value = string.Format("{0:s}{0:zzz}", (DateTimeOffset?)value);
             else if (value is IDictionary<string, object>)
             {
-                var dictionary = (IDictionary<string, object>) value;
+                var dictionary = (IDictionary<string, object>)value;
                 value = dictionary.Count > 0 ? dictionary : null;
             }
             else if (value is IDictionary<string, string>)
             {
-                var dictionary = (IDictionary<string, string>) value;
+                var dictionary = (IDictionary<string, string>)value;
                 value = dictionary.Count > 0 ? dictionary : null;
             }
             else if (value != null && value.GetType() != typeof(string) && value is IEnumerable)
             {
-                var things = (from object thing in (IEnumerable) value
-                    select GetTheValue(thing.GetType(), thing)).ToList();
+                var things = (from object thing in (IEnumerable)value
+                              select GetTheValue(thing.GetType(), thing)).ToList();
                 value = things.Count > 0 ? things : null;
             }
             return value;
@@ -157,7 +158,7 @@ namespace SparkPost
 
         private static Dictionary<Type, MethodInfo> GetTheConverters()
         {
-            return typeof (DataMapper).GetMethods()
+            return typeof(DataMapper).GetMethods()
                 .Where(x => x.Name == "ToDictionary")
                 .Where(x => x.GetParameters().Length == 1)
                 .Select(x => new
