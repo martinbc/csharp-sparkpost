@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Net;
+﻿using System.Net;
+using System.Net.Http;
 
 namespace SparkPost
 {
@@ -21,24 +21,15 @@ namespace SparkPost
             var request = new Request
             {
                 Url = string.Format("api/{0}/transmissions", client.Version),
-                Method = "POST",
+                Method = HttpMethod.Post,
                 Data = dataMapper.ToDictionary(transmission)
             };
 
-            var response = requestSender.SendSync(request);
+            var response = requestSender.SendSync<SendTransmissionResponse>(request);
 
-            if (response.StatusCode != HttpStatusCode.OK) throw new ResponseException(response);
+            if (response.StatusCode != HttpStatusCode.OK) throw new ResponseException<SendTransmissionResponse>(response);
 
-            var results = JsonConvert.DeserializeObject<dynamic>(response.Content).results;
-            return new SendTransmissionResponse()
-            {
-                Id = results.id,
-                ReasonPhrase = response.ReasonPhrase,
-                StatusCode = response.StatusCode,
-                Content = response.Content,
-                TotalAcceptedRecipients = results.total_accepted_recipients,
-                TotalRejectedRecipients = results.total_rejected_recipients,
-            };
+            return response.Results;
         }
     }
 }

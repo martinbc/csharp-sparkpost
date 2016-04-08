@@ -2,18 +2,18 @@
 
 namespace SparkPost
 {
-    public class ResponseException : Exception
+    public class ResponseException<T> : Exception
     {
-        private readonly Response response;
+        private readonly Response<T> response;
 
-        public ResponseException(Response response)
+        public ResponseException(Response<T> response)
         {
             this.response = response;
         }
 
         public override string Message
         {
-            get { return response.Content; }
+            get { return response.RawResponse; }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SparkPost
 {
-    public class SendTransmissionResponse : Response
+    public class SendTransmissionResponse
     {
         public string Id { get; set; }
         public int TotalAcceptedRecipients { get; set; }

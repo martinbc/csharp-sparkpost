@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NUnit.Framework;
+using Should;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
-using Should;
 
 namespace SparkPost.Tests
 {
